@@ -1,14 +1,11 @@
 package com.fisa.soap.services;
 
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import com.fisa.soap.services.model.RequestSOAP;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
 
 /**
  * @author David Pazmino
@@ -17,16 +14,18 @@ import java.util.Map;
  */
 public class SumarTest {
 
-    @org.junit.Before
+    @Before
     public void setUp() throws Exception {
 
     }
 
     @Test
-    public void fromMapTest() throws Exception {
-        FTransactionMessage ftm = jsonFTM.fromMap(lmap);
-        Assert.assertEquals(47, ftm.getDataMessage().getAllFields().size());
-        Assert.assertEquals("accCy / string", ftm.getField("accCy").getValue());
+    public void sumarTest() throws Exception {
 
+        RequestSOAP requestSOAP = new RequestSOAP();
+        requestSOAP.setNum1(10);
+        requestSOAP.setNum2(4);
+
+        Assert.assertEquals(14, requestSOAP.getNum1() + requestSOAP.getNum2());
     }
 }
